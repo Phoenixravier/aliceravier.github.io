@@ -9,7 +9,7 @@ In this tutorial you will learn how to install Scala-Mungo, create a protocol fo
 # SBT
 Copy in these lines into your build.sbt file:
 
-`
+```markdown
 resolvers += Resolver.bintrayRepo("aliceravier", "maven")
 
 autoCompilerPlugins := true
@@ -19,7 +19,7 @@ val root = ABSOLUTE-PATH-TO-YOUR-PROJECT
 scalacOptions += "-P:GetFileFromAnnotation:"+root
 
 libraryDependencies += "org.me" % "scala-mungo-prototype_2.13" % "1.4"
-`
+```
 Instead of ABSOLUTE-PATH-TO-YOUR-PROJECT, put in the absolute path to your project, i.e. the path to the build.sbt file.
 It should look like this:
 `val root = val root = "C:\\Year five\\Scala-Mungo-dir\\Test"`
