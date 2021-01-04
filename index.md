@@ -59,17 +59,17 @@ We come up with the following state machine:
 ![ATM state machine](src)
 
 Now we can write our protocol. We need to extend "ProtocolLang" and create a main method:
-`
+```markdown
 import ProtocolDSL.ProtocolLang
 
 object ATMProtocol extends ProtocolLang with App{
 
 }
-`
+```
 This needs to be in a file called "ATMProtocol.scala".
 
 Then we can define the states we want:
-`
+```markdown
 import ProtocolDSL.ProtocolLang
 
 object ATMProtocol extends ProtocolLang with App{
@@ -79,10 +79,10 @@ object ATMProtocol extends ProtocolLang with App{
   in("ShouldEject")
   in("end")
 }
-`
+```
 
 Then we can define the transitions for all the states:
-`
+```markdown
 import ProtocolDSL.ProtocolLang
 
 object ATMProtocol extends ProtocolLang with App{
@@ -99,10 +99,10 @@ object ATMProtocol extends ProtocolLang with App{
   in("end")
   when("beginNewTransaction()") goto "init"
  }
-`
+```
 
 And finally we add the "end()" method at the end of the protocol:
-`
+```markdown
 import ProtocolDSL.ProtocolLang
 
 object ATMProtocol extends ProtocolLang with App{
@@ -120,7 +120,7 @@ object ATMProtocol extends ProtocolLang with App{
   when("beginNewTransaction()") goto "init"
   end()
 }
-`
+```
 
 Then we can run the protocol, which should create a file called "ATMProtocol.ser" inside a "compiledProtocols" directory in the project root. 
 Now the plugin can find it and use it to check our ATMs are running correctly!
@@ -130,12 +130,12 @@ Adding a protocol to a class in the program is easy. You only need to add the @T
 The annotation takes a String of the name of the object which the protocol was defined in as an argument.
 In our ATM example:
 
-`
+```markdown
 import compilerPlugin.Typestate
 
 @Typestate("ATMProtocol")
 class ATM(){...}
-`
+```
 
 Here is an example program which uses the ATMProtocol defined above and represents the protocol:
 
