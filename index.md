@@ -22,7 +22,7 @@ libraryDependencies += "org.me" % "scala-mungo-prototype_2.13" % "1.8"
 ```
 Instead of ABSOLUTE-PATH-TO-YOUR-PROJECT, put in the absolute path to your project, i.e. the path to the build.sbt file.
 It should look like this:
-`val root = val root = "C:\\Year five\\Scala-Mungo-dir\\Test"`
+`val root = "C:\\Year five\\Scala-Mungo-dir\\Test"`
 This is used for the plugin to find the location of the protocols you will define.
 
 ## Creating a protocol
