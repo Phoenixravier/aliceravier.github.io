@@ -88,6 +88,7 @@ import ProtocolDSL.ProtocolLang
 object ATMProtocol extends ProtocolLang with App{
   in("init")
   when("takeCard()") goto "CardIn"
+  when("beginNewTransaction()") goto "init"
   in("CardIn")
   when("authorise()") goto 
     "Authorised" at "true" or 
@@ -108,6 +109,7 @@ import ProtocolDSL.ProtocolLang
 object ATMProtocol extends ProtocolLang with App{
   in("init")
   when("takeCard()") goto "CardIn"
+  when("beginNewTransaction()") goto "init"
   in("CardIn")
   when("authorise()") goto
     "Authorised" at "true" or
@@ -137,36 +139,41 @@ import compilerPlugin.Typestate
 class ATM(){...}
 ```
 
-Here is an example program which uses the ATMProtocol defined above and represents the protocol:
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
+Here is a full example program which uses the ATMProtocol defined above:
 ```markdown
-Syntax highlighted code block
+import compilerPlugin.Typestate
 
-# Header 1
-## Header 2
-### Header 3
+@Typestate("ATMProtocol")
+class ATM {
+  def takeCard(): Unit ={}
 
-- Bulleted
-- List
+  def authorise(): Boolean ={
+    var cardIsValid = false
+    //code which checks if the card is valid
+    cardIsValid
+  }
 
-1. Numbered
-2. List
+  def eject(): Unit ={}
 
-**Bold** and _Italic_ and `Code` text
+  def giveMoney(): Unit ={}
 
-[Link](url) and ![Image](src)
+  def beginNewTransaction(): Unit ={}
+}
+
+object ATMtest extends App{
+  val myATM = new ATM()
+  while(true) {
+    myATM.beginNewTransaction()
+    myATM.takeCard()
+    myATM.authorise() match {
+      case true =>
+        myATM.giveMoney()
+      case false =>
+    }
+    myATM.eject()
+  }
+}
 ```
+This should not cause errors to be thrown.
+Try removing the "myATM.eject()" line. This should throw an error saying that the beginNewTransaction() method was called inappropriately.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Aliceravier/aliceravier.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
