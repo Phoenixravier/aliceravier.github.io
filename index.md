@@ -14,11 +14,11 @@ resolvers += Resolver.bintrayRepo("aliceravier", "maven")
 
 autoCompilerPlugins := true
 
-addCompilerPlugin("org.me" % "scala-mungo-prototype_2.13" % "1.4")
+addCompilerPlugin("org.me" % "scala-mungo-prototype_2.13" % "1.8")
 val root = ABSOLUTE-PATH-TO-YOUR-PROJECT
 scalacOptions += "-P:GetFileFromAnnotation:"+root
 
-libraryDependencies += "org.me" % "scala-mungo-prototype_2.13" % "1.4"
+libraryDependencies += "org.me" % "scala-mungo-prototype_2.13" % "1.8"
 ```
 Instead of ABSOLUTE-PATH-TO-YOUR-PROJECT, put in the absolute path to your project, i.e. the path to the build.sbt file.
 It should look like this:
