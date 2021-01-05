@@ -27,6 +27,11 @@ It should look like this:
 
 This is used for the plugin to find the location of the protocols you will define.
 
+### Other build tools
+For other build tools, see this page: https://bintray.com/aliceravier/maven/scala-mungo-prototype
+There is a bit at the bottom left of the page which gives code snippets to add to other build tool files. 
+I haven't tested them so I don't know if they will work, but they should.
+
 ## Fixes for problems during setup
 I have been intellij and sbt for testing and have found that a lot of problems can be fixed with three techinques:
 - invalidate caches and restart
