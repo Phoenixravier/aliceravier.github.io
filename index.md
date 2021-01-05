@@ -182,7 +182,7 @@ Try removing the "myATM.eject()" line. This should throw an error saying that th
 
 ### 1: Do the ATM example explained above
 
-### 2: An alaising example
+### 2: An aliasing example
 As a programmer, you want to model the flow of cash in a company. amounts of money dealt with should always be acted on in a certain way: they should be filled, have interest added to them and only then be used. 
 Given the following state machine representation, create a protocol in Scala-Mungo for a stash of money.
 
