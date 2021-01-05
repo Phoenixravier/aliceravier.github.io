@@ -271,7 +271,7 @@ Now write a protocol for a cat, or any other animal of your choice.
 - From init, it might also call the sleep() method which would return "false", in which case it shouldn't change anything to the state. It can call sleep():false an infinite number of times.
 
 Once you have written this protocol, run it and then write a program which uses your animal class and does not error. 
-And then one which does error.
+Then write a program which does error.
 You may use the class below or write your own one:
 ```markdown
 class Cat{
