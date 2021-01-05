@@ -65,7 +65,7 @@ when("authorise()") goto
 ### Example
 Let's say we want to create an ATM object which should follow a certain protocol. We want it to be able to take a card in, check if it's authorised, and then give money if it is or eject the card if not. Then we want the transaction to be available again. We need to include an "end" state which we can place right next to the "init" state, where all the transactions should start from.
 We come up with the following state machine:
-![ATM state machine]({{ site.url }}/assets/ATMExample2.pdf)
+![ATM state machine]({{ site.url }}/assets/ATMProtocol.png)
 
 Now we can write our protocol. We need to extend "ProtocolLang" and create a main method:
 ```markdown
