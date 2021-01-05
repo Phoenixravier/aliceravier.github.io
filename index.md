@@ -53,7 +53,7 @@ when("authorise()") goto
     "Unauthorised" at "false"
 `
 
-- Protocols must contain a unique "init" state which will be the state given to an instance when it is initialised. \newline
+- Protocols must contain a unique "init" state which will be the state given to an instance when it is initialised.
 
 - Protocols must contain a unique "end" state which indicates protocol completion, that is, at the end of a program, the object should be in the "end" state. All states must have a path of transitions between themselves and the "end" state.
 
