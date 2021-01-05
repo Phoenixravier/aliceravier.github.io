@@ -203,7 +203,9 @@ Given the following state machine representation, create a protocol in Scala-Mun
 
 You also want to have this money used by managers and a database. 
 In the code below, a manager and a database are created which both take the same MoneyStash instance as a field. 
+
 *A note on aliasing*
+
 An instance which has two ways of referring to it is called "aliased". So in this case the MoneyStash instance is aliased.
 This could cause problems since the manager and database don't know what each is doing on the other's MoneyStash instance. If both applied interest that would be illegal from the protocol's standpoint, but would be invisible from the standpoint of individual variables.
 Scala-Mungo tracks all the aliases (variable names) for a given instance so that this doesn't happen.
