@@ -6,7 +6,7 @@ In this tutorial you will learn how to install Scala-Mungo, create a protocol fo
 
 ## Installing Scala-Mungo
 
-# SBT
+### SBT
 Copy in these lines into your build.sbt file:
 
 ```markdown
@@ -29,7 +29,7 @@ This is used for the plugin to find the location of the protocols you will defin
 A protocol consists of states that instances of the class can be in, and transitions between the states facilitated by method calls. 
 All protocols must start in the "init" state and end in the "end" state.
 
-# Specification
+### Specification
 
 - The protocol must be defined inside an object which extends "ProtocolLang" and the code for the protocol must be in the main function of that object.
 
@@ -53,7 +53,7 @@ when("authorise()") goto
 - The protocol file must be called by the name of the object which the protocol is defined it. Example: a protocol defined in the object "ATMProtocol" should have "ATMProtocol.scala" as the file name.
 
 
-# Example
+### Example
 Let's say we want to create an ATM object which should follow a certain protocol. We want it to be able to take a card in, check if it's authorised, and then give money if it is or eject the card if not. Then we want the transaction to be available again. We need to include an "end" state which we can place right next to the "init" state, where all the transactions should start from.
 We come up with the following state machine:
 ![ATM state machine](src)
@@ -175,5 +175,78 @@ object ATMtest extends App{
 }
 ```
 This should not cause errors to be thrown.
+
 Try removing the "myATM.eject()" line. This should throw an error saying that the beginNewTransaction() method was called inappropriately.
+
+## Exercices
+
+### 1: Do the ATM example explained above
+
+### 2: An alaising example
+As a programmer, you want to model the flow of cash in a company. amounts of money dealt with should always be acted on in a certain way: they should be filled, have interest added to them and only then be used. 
+Given the following state machine representation, create a protocol in Scala-Mungo for a stash of money.
+
+You also want to have this money used by managers and a database. 
+In the code below, a manager and a database are created which both take the same MoneyStash instance as a field. 
+*A note on aliasing*
+An instance which has two ways of referring to it is called "aliased". So in this case the MoneyStash instance is aliased.
+This could cause problems since the manager and database don't know what each is doing on the other's MoneyStash instance. If both applied interest that would be illegal from the protocol's standpoint, but would be invisible from the standpoint of individual variables.
+Scala-Mungo tracks all the aliases (variable names) for a given instance so that this doesn't happen.
+
+Copy the code below into a file and check it works with the protocol defined above:
+```markdown
+@Typestate("MoneyStashProtocol")
+class MoneyStash() {
+  var amountOfMoney : Float = 0
+  def fill(amount : Float ) : Unit = {amountOfMoney = amount}
+  def get() : Float = amountOfMoney
+  def applyInterest(interest_rate : Float) : Unit = {
+    amountOfMoney = amountOfMoney * interest_rate;
+  }
+}
+
+class DataStorage() {
+  var money : MoneyStash = null;
+  def setMoney(m : MoneyStash) : Unit = {money = m}
+  def store() : Unit = {
+    var amount = money.get()
+    println(amount)
+    // write to DB
+  }
+}
+
+class SalaryManager() {
+  var money : MoneyStash = null;
+  def setMoney(m : MoneyStash) : Unit = {
+    money = m
+  }
+  def addSalary(amount: Float) : Unit = {
+    money.fill(amount)
+    money.applyInterest(1.02f) 
+  }
+}
+
+object Demonstration extends App {
+  val salary = new MoneyStash
+  val manager = new SalaryManager
+  val storage = new DataStorage
+
+  manager.setMoney(salary)  
+  storage.setMoney(salary)  
+
+  manager.addSalary(5000)   
+  storage.store()           
+}
+```
+
+Now try adding a "money.applyInterest(1.02f)" line above the "var amount = money.get()" line in the DataStorage class. This should cause an error when run.
+
+### 3: Create a protocol from a written specification
+Now write a protocol for a cat, or any other animal of your choice.
+The animal must be able to complete any number of walk()-slow()-stop()-startAgain() cycles, from init.
+It must also be able to complete any number of walk()-run()-slow()-stop()-startAgain() cycles, from init.
+From init, when calling the sleep() method, it might fall asleep (return true), in which case it should then be able to call awake() and then startOver(). It should be able to repeat this infinitely.
+From init, it might also call the sleep() method which would return "false", in which case it should change anything to the state. It can call sleep():false an infinite number of times.
+
+Once you have written this protocol, run it and then write a program which uses your animal class and does not error. And then one which does error.
 
