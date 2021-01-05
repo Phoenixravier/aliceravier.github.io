@@ -135,6 +135,8 @@ object ATMProtocol extends ProtocolLang with App{
 Then we can run the protocol, which should create a file called "ATMProtocol.ser" inside a "compiledProtocols" directory in the project root. 
 Now the plugin can find it and use it to check our ATMs are running correctly!
 
+Make sure to run the protocol before writing code which uses it or the plugin will complain about not being able to find the protocol. In that case, comment out the @Typestate annotation and run the protocol again.
+
 ## Using a protocol in a program
 Adding a protocol to a class in the program is easy. You only need to add the @Typestate annotation to the class which should be following the protocol. 
 The annotation takes a String of the name of the object which the protocol was defined in as an argument.
@@ -185,6 +187,8 @@ object ATMtest extends App{
 This should not cause errors to be thrown.
 
 Try removing the "myATM.eject()" line. This should throw an error saying that the beginNewTransaction() method was called inappropriately.
+
+If the program isn't running and is complaining about not finding the protocol, make sure you have got a ATMProtocol.ser file inside the compiledProtocols directory. If not, comment out the @Typestate annotation and run the ATM protocol defined in the above section.
 
 ## Exercices
 
@@ -257,9 +261,9 @@ Now write a protocol for a cat, or any other animal of your choice.
 
 - It must also be able to complete any number of walk()-run()-slow()-stop()-startAgain() cycles, from init.
 
-- From init, when calling the sleep() method, it might fall asleep (return true), in which case it should then be able to call awaken() and then startOver(). It should be able to repeat this infinitely.
+- From init, when calling the sleep() method, it might fall asleep (return true), in which case it should then be able to call awaken() and then startAgain(). It should be able to repeat this infinitely.
 
-- From init, it might also call the sleep() method which would return "false", in which case it should change anything to the state. It can call sleep():false an infinite number of times.
+- From init, it might also call the sleep() method which would return "false", in which case it shouldn't change anything to the state. It can call sleep():false an infinite number of times.
 
 Once you have written this protocol, run it and then write a program which uses your animal class and does not error. 
 And then one which does error.
