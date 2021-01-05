@@ -198,7 +198,7 @@ If the program isn't running and is complaining about not finding the protocol, 
 ### 2: An aliasing example
 As a programmer, you want to model the flow of cash in a company. amounts of money dealt with should always be acted on in a certain way: they should be filled, have interest added to them and only then be used. 
 Given the following state machine representation, create a protocol in Scala-Mungo for a stash of money.
-![MoneyStash protocol]({{ site.url }}/assets/aliasing protocol.png)
+![MoneyStash protocol]({{ site.url }}/assets/aliasing protocol.PNG)
 
 You also want to have this money used by managers and a database. 
 In the code below, a manager and a database are created which both take the same MoneyStash instance as a field. 
