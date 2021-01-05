@@ -63,7 +63,7 @@ when("authorise()") goto
 ### Example
 Let's say we want to create an ATM object which should follow a certain protocol. We want it to be able to take a card in, check if it's authorised, and then give money if it is or eject the card if not. Then we want the transaction to be available again. We need to include an "end" state which we can place right next to the "init" state, where all the transactions should start from.
 We come up with the following state machine:
-![ATM state machine](src)
+![ATM state machine](https://aliceravier.github.io/ATMExample2.png)
 
 Now we can write our protocol. We need to extend "ProtocolLang" and create a main method:
 ```markdown
@@ -192,6 +192,7 @@ Try removing the "myATM.eject()" line. This should throw an error saying that th
 ### 2: An aliasing example
 As a programmer, you want to model the flow of cash in a company. amounts of money dealt with should always be acted on in a certain way: they should be filled, have interest added to them and only then be used. 
 Given the following state machine representation, create a protocol in Scala-Mungo for a stash of money.
+![MoneyStash protocol](https://aliceravier.github.io/aliasing protocol.png)
 
 You also want to have this money used by managers and a database. 
 In the code below, a manager and a database are created which both take the same MoneyStash instance as a field. 
