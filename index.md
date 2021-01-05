@@ -25,6 +25,13 @@ It should look like this:
 `val root = "C:\\Year five\\Scala-Mungo-dir\\Test"`
 This is used for the plugin to find the location of the protocols you will define.
 
+## Fixes for problems during setup
+I have been intellij and sbt for testing and have found that a lot of problems can be fixed with three techinques:
+- invalidate caches and restart
+- use `sbt run` instead of running the code from the editor
+- put all the code into one file (classes and program to run)
+
+
 ## Creating a protocol
 A protocol consists of states that instances of the class can be in, and transitions between the states facilitated by method calls. 
 All protocols must start in the "init" state and end in the "end" state.
