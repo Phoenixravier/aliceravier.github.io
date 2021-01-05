@@ -14,11 +14,11 @@ resolvers += Resolver.bintrayRepo("aliceravier", "maven")
 
 autoCompilerPlugins := true
 
-addCompilerPlugin("org.me" % "scala-mungo-prototype_2.13" % "1.8")
+addCompilerPlugin("org.me" % "scala-mungo-prototype_2.13" % "1.9")
 val root = ABSOLUTE-PATH-TO-YOUR-PROJECT
 scalacOptions += "-P:GetFileFromAnnotation:"+root
 
-libraryDependencies += "org.me" % "scala-mungo-prototype_2.13" % "1.8"
+libraryDependencies += "org.me" % "scala-mungo-prototype_2.13" % "1.9"
 ```
 Instead of ABSOLUTE-PATH-TO-YOUR-PROJECT, put in the absolute path to your project, i.e. the path to the build.sbt file.
 It should look like this:
@@ -63,7 +63,8 @@ when("authorise()") goto
 ### Example
 Let's say we want to create an ATM object which should follow a certain protocol. We want it to be able to take a card in, check if it's authorised, and then give money if it is or eject the card if not. Then we want the transaction to be available again. We need to include an "end" state which we can place right next to the "init" state, where all the transactions should start from.
 We come up with the following state machine:
-![ATM state machine](https://aliceravier.github.io/ATMExample2.png)
+![ATM state machine](https://aliceravier.github.io/ATMExample2.pdf)
+<img src="https://aliceravier.github.io/ATMExample2.pdf" alt="hi" class="inline"/>
 
 Now we can write our protocol. We need to extend "ProtocolLang" and create a main method:
 ```markdown
@@ -251,10 +252,40 @@ Now try adding a "money.applyInterest(1.02f)" line above the "var amount = money
 
 ### 3: Create a protocol from a written specification
 Now write a protocol for a cat, or any other animal of your choice.
-The animal must be able to complete any number of walk()-slow()-stop()-startAgain() cycles, from init.
-It must also be able to complete any number of walk()-run()-slow()-stop()-startAgain() cycles, from init.
-From init, when calling the sleep() method, it might fall asleep (return true), in which case it should then be able to call awake() and then startOver(). It should be able to repeat this infinitely.
-From init, it might also call the sleep() method which would return "false", in which case it should change anything to the state. It can call sleep():false an infinite number of times.
 
-Once you have written this protocol, run it and then write a program which uses your animal class and does not error. And then one which does error.
+- The animal must be able to complete any number of walk()-slow()-stop()-startAgain() cycles, from init.
 
+- It must also be able to complete any number of walk()-run()-slow()-stop()-startAgain() cycles, from init.
+
+- From init, when calling the sleep() method, it might fall asleep (return true), in which case it should then be able to call awaken() and then startOver(). It should be able to repeat this infinitely.
+
+- From init, it might also call the sleep() method which would return "false", in which case it should change anything to the state. It can call sleep():false an infinite number of times.
+
+Once you have written this protocol, run it and then write a program which uses your animal class and does not error. 
+And then one which does error.
+You may use the class below or write your own one:
+```markdown
+class Cat{
+  def walk(): Unit ={
+
+  }
+  def slow(): Unit ={
+
+  }
+  def stop(): Unit ={
+
+  }
+  def run(): Unit ={
+
+  }
+  def sleep():Boolean ={
+    true
+  }
+  def awaken(): Unit ={
+
+  }
+  def startOver(): Unit ={
+
+  }
+}
+```
