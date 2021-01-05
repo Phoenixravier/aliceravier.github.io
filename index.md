@@ -270,6 +270,8 @@ Now write a protocol for a cat, or any other animal of your choice.
 
 - From init, it might also call the sleep() method which would return "false", in which case it shouldn't change anything to the state. It can call sleep():false an infinite number of times.
 
+Remember that protocols must contain a unique "end" state which indicates protocol completion, that is, at the end of a program, the object should be in the "end" state. All states must have a path of transitions between themselves and the "end" state.
+
 Once you have written this protocol, run it and then write a program which uses your animal class and does not error. 
 Then write a program which does error.
 You may use the class below or write your own one:
