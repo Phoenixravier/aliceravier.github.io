@@ -36,7 +36,6 @@ I have been intellij and sbt for testing and have found that a lot of problems c
 
 ## Creating a protocol
 A protocol consists of states that instances of the class can be in, and transitions between the states facilitated by method calls. 
-All protocols must start in the "init" state and end in the "end" state.
 
 ### Specification
 
