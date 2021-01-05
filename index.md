@@ -204,6 +204,7 @@ Given the following state machine representation, create a protocol in Scala-Mun
 You also want to have this money used by managers and a database. 
 In the code below, a manager and a database are created which both take the same MoneyStash instance as a field. 
 
+
 *A note on aliasing*
 
 An instance which has two ways of referring to it is called "aliased". So in this case the MoneyStash instance is aliased.
