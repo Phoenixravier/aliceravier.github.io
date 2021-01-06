@@ -5,6 +5,9 @@ Scala-Mungo is a tool which lets you add a protocol/typestate definition to your
 In this tutorial you will learn how to install Scala-Mungo, create a protocol for a class see an example of a program using that class; there are also exercises to try at the end.
 
 ## Installing Scala-Mungo
+### Installing Scala
+If you do not already have Scala on your machine, you can download it here with sbt: https://www.scala-lang.org/download/
+If you already have Scala, you can move on.
 
 ### SBT
 Copy in these lines into your build.sbt file:
