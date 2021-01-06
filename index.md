@@ -184,7 +184,7 @@ class ATM {
 
 object ATMtest extends App{
   val myATM = new ATM()
-  while(true) {
+  for(x <- 1 to 10) {
     myATM.beginNewTransaction()
     myATM.takeCard()
     myATM.authorise() match {
@@ -194,6 +194,7 @@ object ATMtest extends App{
     }
     myATM.eject()
   }
+  println("Ran the ATM program sucessfully!")
 }
 ```
 This should not cause errors to be thrown.
