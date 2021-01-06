@@ -6,8 +6,10 @@ In this tutorial you will learn how to install Scala-Mungo, create a protocol fo
 
 ## Installing Scala-Mungo
 ### Installing Scala
-If you do not already have Scala on your machine, you can download it here with sbt: https://www.scala-lang.org/download/
 If you already have Scala, you can move on.
+You can download Scala here with sbt: https://www.scala-lang.org/download/
+To run it on command line, you can use this tutorial: https://docs.scala-lang.org/getting-started/sbt-track/getting-started-with-scala-and-sbt-on-the-command-line.html
+
 
 ### SBT
 Copy in these lines into your build.sbt file:
