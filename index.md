@@ -147,6 +147,8 @@ Now the plugin can find it and use it to check our ATMs are running correctly!
 
 Make sure to run the protocol before writing code which uses it or the plugin will complain about not being able to find the protocol. In that case, comment out the @Typestate annotation and run the protocol again.
 
+If you made a mistake in the protocol and modify it at this stage, you may need to comment out the @Typestate annotation to be able to run it again and correct the mistake in the ATMProtocol.ser file.
+
 ## Using a protocol in a program
 Adding a protocol to a class in the program is easy. You only need to add the @Typestate annotation to the class which should be following the protocol. 
 The annotation takes a String of the name of the object which the protocol was defined in as an argument.
