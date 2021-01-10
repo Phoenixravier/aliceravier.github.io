@@ -187,6 +187,13 @@ class ATM {
 
 object ATMtest extends App{
   val myATM = new ATM()
+  myATM.takeCard()
+    myATM.authorise() match {
+      case true =>
+        myATM.giveMoney()
+      case false =>
+    }
+    myATM.eject()
   for(x <- 1 to 10) {
     myATM.beginNewTransaction()
     myATM.takeCard()
