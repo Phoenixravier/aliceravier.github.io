@@ -1,10 +1,10 @@
-# Scala-Mungo tutorial
+# Papaya tutorial
 
 ## Introduction
-Scala-Mungo is a tool which lets you add a protocol/typestate definition to your classes. 
-In this tutorial you will learn how to install Scala-Mungo, create a protocol for a class see an example of a program using that class; there are also exercises to try at the end.
+Papaya is a tool which lets you add a protocol/typestate definition to your classes. 
+In this tutorial you will learn how to install Papaya, create a protocol for a class see an example of a program using that class; there are also exercises to try at the end.
 
-## Installing Scala-Mungo
+## Installing Papaya
 ### Installing Scala
 If you already have Scala, you can move on.
 You can download Scala here with sbt: https://www.scala-lang.org/download/
@@ -28,7 +28,7 @@ libraryDependencies += "org.me" % "scala-mungo-prototype_2.13" % "1.9"
 Instead of ABSOLUTE-PATH-TO-YOUR-PROJECT, put in the absolute path to your project, i.e. the path to the build.sbt file.
 
 It should look like this:
-`val root = "C:\\Year five\\Scala-Mungo-dir\\Test"`
+`val root = "C:\\Year five\\Papaya-dir\\Test"`
 
 This is used for the plugin to find the location of the protocols you will define.
 
@@ -74,7 +74,8 @@ when("authorise()") goto
 ### Example
 Let's say we want to create an ATM object which should follow a certain protocol. We want it to be able to take a card in, check if it's authorised, and then give money if it is or eject the card if not. Then we want the transaction to be available again. We need to include an "end" state which we can place right next to the "init" state, where all the transactions should start from.
 We come up with the following state machine:
-![ATM state machine]({{ site.url }}/assets/ATMProtocol.png)
+
+![ATM state machine](assets/ATMProtocol.png)
 
 Now we can write our protocol. We need to extend "ProtocolLang" and create a main method:
 ```scala
@@ -219,8 +220,9 @@ If the program isn't running and is complaining about not finding the protocol, 
 
 ### 2: An aliasing example
 As a programmer, you want to model the flow of cash in a company. amounts of money dealt with should always be acted on in a certain way: they should be filled, have interest added to them and only then be used. 
-Given the following state machine representation, create a protocol in Scala-Mungo for a stash of money.
-![MoneyStash protocol]({{ site.url }}/assets/aliasing protocol.PNG)
+Given the following state machine representation, create a protocol in Papaya for a stash of money.
+
+![MoneyStash protocol](<assets/aliasing protocol.PNG>)
 
 You also want to have this money used by managers and a database. 
 In the code below, a manager and a database are created which both take the same MoneyStash instance as a field. 
@@ -230,7 +232,7 @@ In the code below, a manager and a database are created which both take the same
 
 An instance which has two ways of referring to it is called "aliased". So in this case the MoneyStash instance is aliased.
 This could cause problems since the manager and database don't know what each is doing on the other's MoneyStash instance. If both applied interest that would be illegal from the protocol's standpoint, but would be invisible from the standpoint of individual variables.
-Scala-Mungo tracks all the aliases (variable names) for a given instance so that this doesn't happen.
+Papaya tracks all the aliases (variable names) for a given instance so that this doesn't happen.
 
 Copy the code below into a file and check it works with the protocol defined above:
 ```scala
