@@ -14,7 +14,7 @@ To run it on command line, you can use this tutorial: https://docs.scala-lang.or
 ### SBT
 Copy in these lines into your build.sbt file:
 
-```markdown
+```scala
 resolvers += Resolver.bintrayRepo("aliceravier", "maven")
 
 autoCompilerPlugins := true
@@ -77,7 +77,7 @@ We come up with the following state machine:
 ![ATM state machine]({{ site.url }}/assets/ATMProtocol.png)
 
 Now we can write our protocol. We need to extend "ProtocolLang" and create a main method:
-```markdown
+```scala
 import ProtocolDSL.ProtocolLang
 
 object ATMProtocol extends ProtocolLang with App{
@@ -87,7 +87,7 @@ object ATMProtocol extends ProtocolLang with App{
 This needs to be in a file called "ATMProtocol.scala".
 
 Then we can define the states we want:
-```markdown
+```scala
 import ProtocolDSL.ProtocolLang
 
 object ATMProtocol extends ProtocolLang with App{
@@ -100,7 +100,7 @@ object ATMProtocol extends ProtocolLang with App{
 ```
 
 Then we can define the transitions for all the states:
-```markdown
+```scala
 import ProtocolDSL.ProtocolLang
 
 object ATMProtocol extends ProtocolLang with App{
@@ -124,7 +124,7 @@ And finally we add the "end()" method at the end of the protocol:
 
 
 *Final version of the ATMProtocol.scala file:*
-```markdown
+```scala
 import ProtocolDSL.ProtocolLang
 
 object ATMProtocol extends ProtocolLang with App{
@@ -157,7 +157,7 @@ Adding a protocol to a class in the program is easy. You only need to add the @T
 The annotation takes a String of the name of the object which the protocol was defined in as an argument.
 In our ATM example:
 
-```markdown
+```scala
 import compilerPlugin.Typestate
 
 @Typestate("ATMProtocol")
@@ -165,7 +165,7 @@ class ATM(){...}
 ```
 
 Here is a full example program which uses the ATMProtocol defined above:
-```markdown
+```scala
 import compilerPlugin.Typestate
 
 @Typestate("ATMProtocol")
@@ -233,7 +233,7 @@ This could cause problems since the manager and database don't know what each is
 Scala-Mungo tracks all the aliases (variable names) for a given instance so that this doesn't happen.
 
 Copy the code below into a file and check it works with the protocol defined above:
-```markdown
+```scala
 @Typestate("MoneyStashProtocol")
 class MoneyStash() {
   var amountOfMoney : Float = 0
@@ -296,7 +296,7 @@ Remember that protocols must contain a unique "end" state which indicates protoc
 Once you have written this protocol, run it and then write a program which uses your animal class and does not error. 
 Then write a program which does error.
 You may use the class below or write your own one:
-```markdown
+```scala
 class Cat{
   def walk(): Unit ={
 
